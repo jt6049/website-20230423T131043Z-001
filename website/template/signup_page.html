@@ -1,0 +1,97 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Music</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style1.css' %}">
+    
+    <!---we had linked our css file----->
+    <script>
+        function verifyPassword() {
+          var pw = document.getElementById("pswd").value;
+          //check empty password field
+          if(pw == "") {
+             document.getElementById("message").innerHTML = "**Fill the password please!";
+             return false;
+          }
+         
+         //minimum password length validation
+          if(pw.length < 8) {
+             document.getElementById("message").innerHTML = "**Password length must be atleast 8 characters";
+             return false;
+          }
+        
+        //maximum length of password validation
+          if(pw.length > 15) {
+             document.getElementById("message").innerHTML = "**Password length must not exceed 15 characters";
+             return false;
+          } 
+        }
+        </script>
+</head>
+<body>
+    <div class="full-page">
+        <div class="navbar">
+            <div>
+                <a>Music</a>
+            </div>
+            <nav>
+                <ul id='MenuItems'>
+                    
+                    <li><button class='loginbtn' onclick="document.getElementById('login-form').style.display='flex'" style="width:auto;">Login</button></li>
+                </ul>
+            </nav>
+        </div>
+        <div id='login-form'class='login-page'>
+            <div class="form-box">
+                <div class='button-box'>
+                    <div id='btn'></div>
+                    <button  type='button'onclick='ulogin()'class='toggle-btn'>User</button>
+                    <button type='button'onclick='alogin()'class='toggle-btn'>Admin</button>
+                </div>
+                
+		 <form id='register' class='input-group-register' onsubmit ="return verifyPassword()" action="#" method="post">
+            {% csrf_token %}
+            {% load static %}
+        
+		     <input type='text'class='input-field' name='first_name' placeholder='First Name' required>
+             <input type='text'class='input-field' name='last_name' placeholder='Last Name' required>
+             <label for='sex' ><b>Sex : </b></label>
+		        <input type='radio' name='sex' value='male' required>
+		        <label ><b>Male</b></label>
+		        <input type='radio' name='sex' value='female' required>
+		        <label ><b>Female</b></label><br>
+		    
+		     <input type='email'class='input-field' name="email" placeholder='Email Id' required>
+		     <input type='password' id="pswd" name="password"  class='input-field'placeholder='Enter Password' value="" required>
+             <br>
+             <span id = "message" style="color:red"> </span>
+             
+		     
+           
+		     
+                    <button class='submit-btn' onclick='kuchb()' href="http://127.0.0.1:8000/login">Register</button>
+	         </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        var x=document.getElementById('login');
+		var y=document.getElementById('register');
+		var z=document.getElementById('btn');
+        function kuchb()
+        {
+            location.href='http://127.0.0.1:8000/login';
+        }
+		
+		
+	</script>
+	
+</body>
+</html>

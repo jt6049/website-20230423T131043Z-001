@@ -1,0 +1,119 @@
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Music</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    
+    <!---we had linked our css file----->
+    <script>
+        function verifyPassword() {
+          var pw = document.getElementById("pswd").value;
+          //check empty password field
+          if(pw == "") {
+             document.getElementById("message").innerHTML = "**Fill the password please!";
+             return false;
+          }
+         
+         //minimum password length validation
+          if(pw.length < 8) {
+             document.getElementById("message").innerHTML = "**Password length must be atleast 8 characters";
+             return false;
+          }
+        
+        //maximum length of password validation
+          if(pw.length > 15) {
+             document.getElementById("message").innerHTML = "**Password length must not exceed 15 characters";
+             return false;
+          } 
+        }
+        </script>
+</head>
+<body>
+    <div class="full-page">
+        <div class="navbar">
+            <div>
+                <a>Music</a>
+            </div>
+            <nav>
+                <ul id='MenuItems'>
+                    
+                    <li><button class='loginbtn' onclick="document.getElementById('login-form').style.display='block'" style="width:auto;">Login</button></li>
+                </ul>
+            </nav>
+        </div>
+        <div id='login-form'class='login-page'>
+            <div class="form-box">
+                <div class='button-box'>
+                    <div id='btn'></div>
+                    <button  type='button'onclick='ulogin()'class='toggle-btn'>User</button>
+                    <button type='button'onclick='alogin()'class='toggle-btn'>Admin</button>
+                </div>
+                <form id='login' class='input-group-login' action="#" method="post">
+                    {% csrf_token %}
+                    {% load static %}
+                
+                    
+                
+                    <input type='text'class='input-field i1' name ="email" placeholder='Email Id' required >
+		    <input type='password'class='input-field i2 ' name="password" placeholder='Enter Password' required>
+            <p class="forpass"> Forgot Password?</p>
+	
+		    <button type='submit' name="submit" class='submit-btn'>Log in</button>
+
+            <p class="createacc"> Don't have an account?</p>
+
+            <button type='submit'class='submit-btn' name="submit1" onclick='register()'  href="http://127.0.0.1:8000/signup">Sign up</button>
+
+		 </form>
+		 
+            </div>
+        </div>
+    </div>
+    <script>
+        var x=document.getElementById('login');
+		var y=document.getElementById('register');
+		var z=document.getElementById('btn');
+		function register()
+		{
+            location.href='http://127.0.0.1:8000/signup'
+            
+           
+            
+           
+			
+			
+		}
+		function ulogin()
+		{
+			x.style.left='50px';
+			y.style.left='450px';
+			z.style.left='0px';
+		}
+        function alogin()
+		{
+			x.style.left='50px';
+			y.style.left='450px';
+			z.style.left='110px';
+		}
+	</script>
+	<script>
+        var modal = document.getElementById('login-form');
+        window.onclick = function(event) 
+        {
+            if (event.target == modal) 
+            {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
